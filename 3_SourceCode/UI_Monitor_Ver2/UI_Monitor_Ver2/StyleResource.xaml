@@ -1,0 +1,167 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:src="clr-namespace:ITD.Minitor.ViewModel.ViewTemplate;assembly=ITD.Minitor.ViewModel">
+    <src:ClassConverter x:Key="StatusConverter" />
+    <src:ClassConverter x:Key="foodIndexConverter" />
+
+    <Style TargetType="ToolTip">
+        <Setter Property="Visibility" Value="Collapsed" />
+    </Style>
+    <Style x:Key="MyItemContainerStyle" TargetType="{x:Type ListViewItem}">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="Background" Value="#FFD4D6F3"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#92e4f3" />
+            </Trigger>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="#32cae6" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type Label}">
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+    
+    <Style x:Key="imgAlarm" TargetType="Image">
+        <Setter Property="Source" Value="./IconSource/notEXISTS.png"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Width" Value="20"/>
+        <Style.Triggers>
+            <Trigger Property="ToolTip" Value="TẮT">
+                <Setter Property="Source" Value="./IconSource/error_icon1.png"/>
+            </Trigger>
+            <Trigger Property="ToolTip" Value="MỞ">
+                <Setter Property="Source" Value="./IconSource/success_icon.png"/>
+            </Trigger>
+            <Trigger Property="ToolTip" Value="0">
+                <Setter Property="Source" Value="./IconSource/success_icon.png"/>
+            </Trigger>
+            <Trigger Property="ToolTip" Value="1">
+                <Setter Property="Source" Value="./IconSource/waring_icon.png"/>
+            </Trigger>
+            <Trigger Property="ToolTip" Value="2">
+                <Setter Property="Source" Value="./IconSource/error_icon1.png"/>
+            </Trigger>
+            <Trigger Property="ToolTip" Value="-1">
+                <Setter Property="Source" Value="./IconSource/notEXISTS.png"/>
+            </Trigger>
+           
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="txtColumnHeader" TargetType="{x:Type TextBlock}">
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Width" Value="130"/>
+    </Style>
+    <Style TargetType="GridViewColumnHeader">
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Top"/>
+    </Style>
+    
+    <Style x:Key="txtField" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Padding" Value="5,10,5,10"/>
+        <Style.Triggers>
+            <Trigger Property="Text" Value="MỞ">
+                <Setter Property="Background" Value="Green"/>
+            </Trigger>
+            <Trigger Property="Text" Value="TẮT">
+                <Setter Property="Background" Value="Red"/>
+            </Trigger>
+            <Trigger Property="Text" Value="Bình thường">
+                <Setter Property="Background" Value="#20fb08"/>
+            </Trigger>
+            <Trigger Property="ToolTip" Value="1">
+                <Setter Property="Background" Value="Yellow"/>
+            </Trigger>
+            <Trigger Property="ToolTip" Value="2">
+                <Setter Property="Background" Value="Red"/>
+            </Trigger>            
+        </Style.Triggers>
+    </Style>
+    
+    <Style TargetType="Grid">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Text}"  Value="MỞ">
+                <Setter Property="Background" Value="Yellow"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="borderCell" TargetType="{x:Type Border}">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Margin" Value="-6,-2,-6,-2"/>
+
+        <Setter Property="BorderBrush" Value="White"/>
+        <!--<Style.Triggers>
+            <EventTrigger RoutedEvent="Border.Loaded">
+                <BeginStoryboard>
+                    <Storyboard >
+                        <DoubleAnimation 
+                                     Storyboard.TargetProperty="BorderBrush.Opacity"
+                                     RepeatBehavior="Forever"
+                                     AutoReverse="True"
+                                     To="0.0"
+                                     Duration="0:0:0.5" >
+                        </DoubleAnimation>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>-->
+    </Style>
+    <Style x:Key="btnStyle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#FFDDDDDD"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="AliceBlue">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FF517C83"/>
+            </Trigger>
+            <Trigger Property="Button.IsDefaulted" Value="True">
+                <Setter Property="Background" Value="#FF517C83"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="Red"/>
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Background" Value="#FF517C83"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--<Style TargetType="DataGridColumnHeader">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+    </Style>-->
+    <DataTemplate x:Key="cellTemplate_Computer" >
+        <Border Style="{StaticResource borderCell}" x:Name="AnimatedColorButton">
+            <Grid  >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Image Style="{StaticResource imgAlarm}"   Grid.Column="0" Height="20" Width="20" ToolTip="{Binding TrangThai}"/>
+                <TextBlock Grid.Column="1" Text="{Binding TrangThai}" Style="{StaticResource txtField}"/>
+            </Grid>
+        </Border>
+    </DataTemplate>
+
+</ResourceDictionary>

@@ -1,0 +1,22 @@
+/* .draggable navs */
+
+.draggable-container {
+  overflow: hidden;
+  /* no selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.draggable {
+  white-space: nowrap; /* all on same line */
+}
+
+
+/* visual styles */
+.draggable-container {
+  /*padding: 10px 0px;*/
+  /*border: 1px solid #fff;*/
+}

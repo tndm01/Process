@@ -1,0 +1,124 @@
+﻿@model ProcessMonitor.Models.THIETBI
+@{
+    ViewBag.Title = "Chi tiết";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}   
+<div class="row">
+    <div class="col-xs-12" style="background: rgba(9, 148, 232, 0.69); color: white;">
+        <center>
+            <h1>@Model.TenTB</h1>
+        </center>
+    </div>
+
+    <div class="col-xs-12" style="margin-top: 10px;">
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <div class="box-title">Thông tin thiết bị</div>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i style=" color: white; font-size: 130%; " class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="col-xs-5 col-xs-offset-1">
+                    <div class="col-xs-4">
+                        <label>Tên thiết bị:</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <label>@Model.TenTB</label>
+                    </div>
+                </div>
+                <div class="col-xs-5">
+                    <div class="col-xs-4">
+                        <label>IP:</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <label>@Model.IP</label>
+                    </div>
+                </div>
+                <div class="col-xs-5 col-xs-offset-1">
+                    <div class="col-xs-4">
+                        <label>Loại thiết bị:</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <label>@ViewData[Model.MaTB + "loaiThietBi"]</label>
+                    </div>
+                </div>
+                <div class="col-xs-5">
+                    <div class="col-xs-4">
+                        <label>Máy tính:</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <label>@ViewData[Model.MaTB + "tenMayTinh"]</label>
+                    </div>
+                </div>
+                <div class="col-xs-5 col-xs-offset-1">
+                    <div class="col-xs-4">
+                        <label>Trạm:</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <label>Long phước</label>
+                    </div>
+                </div>
+                <div class="col-xs-5">
+                    <div class="col-xs-4">
+                        <label>Cụm:</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <label>@ViewData[Model.MaTB + "tenCum"]</label>
+                    </div>
+                </div>
+
+                <div class="col-xs-5  col-xs-offset-1">
+                    <div class="col-xs-4">
+                        <label>Vị trí:</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <label>@Model.ViTri</label>
+                    </div>
+                </div>
+                <div class="col-xs-5">
+                    <div class="col-xs-4">
+                        <label>Ngày lắp đặt:</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <label>@Model.NgayTao</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <div class="box-title">Trạng thái hiện tại</div>
+                <div class="box-tools pull-right" style="font-size:150%;  color:white;">
+                    <i class="fa fa-clock-o"></i>
+                    <span class="clock"></span>
+                </div>
+            </div>
+            @{
+                    List<ProcessMonitor.Models.GetThongTinTrangThaiChiTietCuaThietBi_Result> ListMay = ViewData[@Model.MaTB] as List<ProcessMonitor.Models.GetThongTinTrangThaiChiTietCuaThietBi_Result>;
+                    <div class="box-body">
+                        <div class="col-xs-4">
+                            <div class="col-xs-4" style="padding-right: 0px;">
+                                <span class="glyphicon glyphicon-ok"></span>
+                                <label class="control-label">Bình thường</label>
+                            </div>
+                            <div class="col-xs-4" style="padding-right: 0px;">
+                                <span class="glyphicon glyphicon-bell"></span>
+                                <label class="control-label">Cảnh báo</label>
+                            </div>
+                            <div class="col-xs-4" style="padding-right: 0px;">
+                                <span class="glyphicon glyphicon-remove"></span>
+                                <label class="control-label">Lỗi</label>
+                            </div>
+                        </div>
+                        @Html.Partial("TabTableThietBi", ListMay)
+                    </div>
+
+            }
+
+        </div>
+    </div>
+</div>
+ 
+        

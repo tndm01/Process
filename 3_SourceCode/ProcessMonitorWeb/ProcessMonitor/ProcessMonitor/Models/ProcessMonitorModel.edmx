@@ -1,0 +1,1045 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProcessMonitorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CUM">
+          <Key>
+            <PropertyRef Name="MSCum" />
+          </Key>
+          <Property Name="MSCum" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MSTram" Type="varchar" MaxLength="10" />
+          <Property Name="TenCum" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="DanhMucThietBi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="TenTB" Type="nvarchar" MaxLength="150" />
+          <Property Name="Serial" Type="nchar" MaxLength="10" />
+          <Property Name="MaLoaiTB" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Head">
+          <Key>
+            <PropertyRef Name="MaHead" />
+          </Key>
+          <Property Name="MaHead" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenHead" Type="nvarchar" MaxLength="50" />
+          <Property Name="MSCUM" Type="varchar" MaxLength="10" />
+          <Property Name="ViTri" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LICHSU">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaTB" Type="varchar" MaxLength="10" />
+          <Property Name="ThoiGian" Type="datetime" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="100" />
+          <Property Name="MaTrangThai" Type="varchar" MaxLength="10" />
+          <Property Name="TrangThai" Type="float" />
+        </EntityType>
+        <EntityType Name="LoaiKetNoi">
+          <Key>
+            <PropertyRef Name="MaLoaiKetNoi" />
+          </Key>
+          <Property Name="MaLoaiKetNoi" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenLoaiKetNoi" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="LOAITHIETBI">
+          <Key>
+            <PropertyRef Name="MaLoaiTB" />
+          </Key>
+          <Property Name="MaLoaiTB" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenLoaiTB" Type="nvarchar" MaxLength="150" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="LOAITHIETBI_TRANGTHAI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="MaLoaiTB" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaTrangThai" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MAYTINH">
+          <Key>
+            <PropertyRef Name="MaMT" />
+          </Key>
+          <Property Name="MaMT" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="IP" Type="varchar" MaxLength="20" />
+          <Property Name="MSCum" Type="varchar" MaxLength="10" />
+          <Property Name="MAC" Type="varchar" MaxLength="50" />
+          <Property Name="TenMT" Type="nvarchar" MaxLength="150" />
+          <Property Name="ProductID" Type="nvarchar" MaxLength="150" />
+          <Property Name="ThoiCapNhat" Type="datetime" />
+          <Property Name="TrangThai" Type="int" />
+        </EntityType>
+        <EntityType Name="THIETBI">
+          <Key>
+            <PropertyRef Name="MaTB" />
+          </Key>
+          <Property Name="MaTB" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenRutGon" Type="varchar" MaxLength="10" />
+          <Property Name="TenTB" Type="nvarchar" MaxLength="150" />
+          <Property Name="MaLoaiTB" Type="varchar" MaxLength="10" />
+          <Property Name="MaMT" Type="varchar" MaxLength="10" />
+          <Property Name="IP" Type="varchar" MaxLength="20" />
+          <Property Name="ProductID" Type="varchar" MaxLength="10" />
+          <Property Name="MaLoaiKetNoi" Type="varchar" MaxLength="10" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="ViTri" Type="nvarchar" MaxLength="250" />
+          <Property Name="MaHead" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="TRAM">
+          <Key>
+            <PropertyRef Name="MSTram" />
+          </Key>
+          <Property Name="MSTram" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenTram" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="TRANGTHAI">
+          <Key>
+            <PropertyRef Name="MaTrangThai" />
+          </Key>
+          <Property Name="MaTrangThai" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="NoiDung" Type="nvarchar" MaxLength="150" />
+          <Property Name="TieuChuanMin" Type="float" />
+          <Property Name="TieuChuanMax" Type="float" />
+          <Property Name="MucDo" Type="int" />
+          <Property Name="MaMau" Type="nchar" MaxLength="10" />
+          <Property Name="DonVi" Type="nvarchar" MaxLength="50" />
+          <Property Name="NoiDungCanhBao" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TRANGTHAITB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaTB" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ThoiGian" Type="datetime" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="100" />
+          <Property Name="TrangThai" Type="float" Nullable="false" />
+          <Property Name="MaTrangThai" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CUM_TRAM">
+          <End Role="TRAM" Type="Self.TRAM" Multiplicity="0..1" />
+          <End Role="CUM" Type="Self.CUM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAM">
+              <PropertyRef Name="MSTram" />
+            </Principal>
+            <Dependent Role="CUM">
+              <PropertyRef Name="MSTram" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DanhMucThietBi_LOAITHIETBI">
+          <End Role="LOAITHIETBI" Type="Self.LOAITHIETBI" Multiplicity="0..1" />
+          <End Role="DanhMucThietBi" Type="Self.DanhMucThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAITHIETBI">
+              <PropertyRef Name="MaLoaiTB" />
+            </Principal>
+            <Dependent Role="DanhMucThietBi">
+              <PropertyRef Name="MaLoaiTB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Head_CUM">
+          <End Role="CUM" Type="Self.CUM" Multiplicity="0..1" />
+          <End Role="Head" Type="Self.Head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUM">
+              <PropertyRef Name="MSCum" />
+            </Principal>
+            <Dependent Role="Head">
+              <PropertyRef Name="MSCUM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOAITHIETBI_TRANGTHAI_LOAITHIETBI">
+          <End Role="LOAITHIETBI" Type="Self.LOAITHIETBI" Multiplicity="1" />
+          <End Role="LOAITHIETBI_TRANGTHAI" Type="Self.LOAITHIETBI_TRANGTHAI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAITHIETBI">
+              <PropertyRef Name="MaLoaiTB" />
+            </Principal>
+            <Dependent Role="LOAITHIETBI_TRANGTHAI">
+              <PropertyRef Name="MaLoaiTB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOAITHIETBI_TRANGTHAI_TRANGTHAI">
+          <End Role="TRANGTHAI" Type="Self.TRANGTHAI" Multiplicity="1" />
+          <End Role="LOAITHIETBI_TRANGTHAI" Type="Self.LOAITHIETBI_TRANGTHAI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRANGTHAI">
+              <PropertyRef Name="MaTrangThai" />
+            </Principal>
+            <Dependent Role="LOAITHIETBI_TRANGTHAI">
+              <PropertyRef Name="MaTrangThai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MAYTINH_CUM">
+          <End Role="CUM" Type="Self.CUM" Multiplicity="0..1" />
+          <End Role="MAYTINH" Type="Self.MAYTINH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUM">
+              <PropertyRef Name="MSCum" />
+            </Principal>
+            <Dependent Role="MAYTINH">
+              <PropertyRef Name="MSCum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_THIETBI_Head">
+          <End Role="Head" Type="Self.Head" Multiplicity="0..1" />
+          <End Role="THIETBI" Type="Self.THIETBI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Head">
+              <PropertyRef Name="MaHead" />
+            </Principal>
+            <Dependent Role="THIETBI">
+              <PropertyRef Name="MaHead" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_THIETBI_LoaiKetNoi">
+          <End Role="LoaiKetNoi" Type="Self.LoaiKetNoi" Multiplicity="0..1" />
+          <End Role="THIETBI" Type="Self.THIETBI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiKetNoi">
+              <PropertyRef Name="MaLoaiKetNoi" />
+            </Principal>
+            <Dependent Role="THIETBI">
+              <PropertyRef Name="MaLoaiKetNoi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_THIETBI_LOAITHIETBI">
+          <End Role="LOAITHIETBI" Type="Self.LOAITHIETBI" Multiplicity="0..1" />
+          <End Role="THIETBI" Type="Self.THIETBI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAITHIETBI">
+              <PropertyRef Name="MaLoaiTB" />
+            </Principal>
+            <Dependent Role="THIETBI">
+              <PropertyRef Name="MaLoaiTB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_THIETBI_MAYTINH">
+          <End Role="MAYTINH" Type="Self.MAYTINH" Multiplicity="0..1" />
+          <End Role="THIETBI" Type="Self.THIETBI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAYTINH">
+              <PropertyRef Name="MaMT" />
+            </Principal>
+            <Dependent Role="THIETBI">
+              <PropertyRef Name="MaMT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANGTHAITB_THIETBI1">
+          <End Role="THIETBI" Type="Self.THIETBI" Multiplicity="1" />
+          <End Role="TRANGTHAITB" Type="Self.TRANGTHAITB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THIETBI">
+              <PropertyRef Name="MaTB" />
+            </Principal>
+            <Dependent Role="TRANGTHAITB">
+              <PropertyRef Name="MaTB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANGTHAITB_TRANGTHAI">
+          <End Role="TRANGTHAI" Type="Self.TRANGTHAI" Multiplicity="1" />
+          <End Role="TRANGTHAITB" Type="Self.TRANGTHAITB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRANGTHAI">
+              <PropertyRef Name="MaTrangThai" />
+            </Principal>
+            <Dependent Role="TRANGTHAITB">
+              <PropertyRef Name="MaTrangThai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetThongTinLichSuTrangThaiThietBi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaMT" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetThongTinTrangThaiChiTietCuaThietBi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaTB" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetThongTinTrangThaiThietBi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MSCum" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Keyword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_SYNC_UpdateTRANGTHAITBTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="MATB" Type="varchar" Mode="In" />
+          <Parameter Name="THOIGIAN" Type="datetime" Mode="In" />
+          <Parameter Name="MOTA" Type="nvarchar" Mode="In" />
+          <Parameter Name="TRANGTHAI" Type="float" Mode="In" />
+          <Parameter Name="MATRANGTHAI" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ProcessMonitorModelStoreContainer">
+          <EntitySet Name="CUM" EntityType="Self.CUM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DanhMucThietBi" EntityType="Self.DanhMucThietBi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Head" EntityType="Self.Head" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LICHSU" EntityType="Self.LICHSU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoaiKetNoi" EntityType="Self.LoaiKetNoi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOAITHIETBI" EntityType="Self.LOAITHIETBI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOAITHIETBI_TRANGTHAI" EntityType="Self.LOAITHIETBI_TRANGTHAI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAYTINH" EntityType="Self.MAYTINH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THIETBI" EntityType="Self.THIETBI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRAM" EntityType="Self.TRAM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRANGTHAI" EntityType="Self.TRANGTHAI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRANGTHAITB" EntityType="Self.TRANGTHAITB" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CUM_TRAM" Association="Self.FK_CUM_TRAM">
+            <End Role="TRAM" EntitySet="TRAM" />
+            <End Role="CUM" EntitySet="CUM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DanhMucThietBi_LOAITHIETBI" Association="Self.FK_DanhMucThietBi_LOAITHIETBI">
+            <End Role="LOAITHIETBI" EntitySet="LOAITHIETBI" />
+            <End Role="DanhMucThietBi" EntitySet="DanhMucThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Head_CUM" Association="Self.FK_Head_CUM">
+            <End Role="CUM" EntitySet="CUM" />
+            <End Role="Head" EntitySet="Head" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOAITHIETBI_TRANGTHAI_LOAITHIETBI" Association="Self.FK_LOAITHIETBI_TRANGTHAI_LOAITHIETBI">
+            <End Role="LOAITHIETBI" EntitySet="LOAITHIETBI" />
+            <End Role="LOAITHIETBI_TRANGTHAI" EntitySet="LOAITHIETBI_TRANGTHAI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOAITHIETBI_TRANGTHAI_TRANGTHAI" Association="Self.FK_LOAITHIETBI_TRANGTHAI_TRANGTHAI">
+            <End Role="TRANGTHAI" EntitySet="TRANGTHAI" />
+            <End Role="LOAITHIETBI_TRANGTHAI" EntitySet="LOAITHIETBI_TRANGTHAI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MAYTINH_CUM" Association="Self.FK_MAYTINH_CUM">
+            <End Role="CUM" EntitySet="CUM" />
+            <End Role="MAYTINH" EntitySet="MAYTINH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_THIETBI_Head" Association="Self.FK_THIETBI_Head">
+            <End Role="Head" EntitySet="Head" />
+            <End Role="THIETBI" EntitySet="THIETBI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_THIETBI_LoaiKetNoi" Association="Self.FK_THIETBI_LoaiKetNoi">
+            <End Role="LoaiKetNoi" EntitySet="LoaiKetNoi" />
+            <End Role="THIETBI" EntitySet="THIETBI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_THIETBI_LOAITHIETBI" Association="Self.FK_THIETBI_LOAITHIETBI">
+            <End Role="LOAITHIETBI" EntitySet="LOAITHIETBI" />
+            <End Role="THIETBI" EntitySet="THIETBI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_THIETBI_MAYTINH" Association="Self.FK_THIETBI_MAYTINH">
+            <End Role="MAYTINH" EntitySet="MAYTINH" />
+            <End Role="THIETBI" EntitySet="THIETBI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANGTHAITB_THIETBI1" Association="Self.FK_TRANGTHAITB_THIETBI1">
+            <End Role="THIETBI" EntitySet="THIETBI" />
+            <End Role="TRANGTHAITB" EntitySet="TRANGTHAITB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANGTHAITB_TRANGTHAI" Association="Self.FK_TRANGTHAITB_TRANGTHAI">
+            <End Role="TRANGTHAI" EntitySet="TRANGTHAI" />
+            <End Role="TRANGTHAITB" EntitySet="TRANGTHAITB" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProcessMonitorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CUM">
+          <Key>
+            <PropertyRef Name="MSCum" />
+          </Key>
+          <Property Name="MSCum" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MSTram" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TenCum" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TRAM" Relationship="Self.FK_CUM_TRAM" FromRole="CUM" ToRole="TRAM" />
+          <NavigationProperty Name="Heads" Relationship="Self.FK_Head_CUM" FromRole="CUM" ToRole="Head" />
+          <NavigationProperty Name="MAYTINHs" Relationship="Self.FK_MAYTINH_CUM" FromRole="CUM" ToRole="MAYTINH" />
+        </EntityType>
+        <EntityType Name="DanhMucThietBi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="TenTB" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Serial" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="MaLoaiTB" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="LOAITHIETBI" Relationship="Self.FK_DanhMucThietBi_LOAITHIETBI" FromRole="DanhMucThietBi" ToRole="LOAITHIETBI" />
+        </EntityType>
+        <EntityType Name="Head">
+          <Key>
+            <PropertyRef Name="MaHead" />
+          </Key>
+          <Property Name="MaHead" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenHead" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MSCUM" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ViTri" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CUM" Relationship="Self.FK_Head_CUM" FromRole="Head" ToRole="CUM" />
+          <NavigationProperty Name="THIETBIs" Relationship="Self.FK_THIETBI_Head" FromRole="Head" ToRole="THIETBI" />
+        </EntityType>
+        <EntityType Name="LICHSU">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaTB" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ThoiGian" Type="DateTime" Precision="3" />
+          <Property Name="MoTa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MaTrangThai" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TrangThai" Type="Double" />
+        </EntityType>
+        <EntityType Name="LoaiKetNoi">
+          <Key>
+            <PropertyRef Name="MaLoaiKetNoi" />
+          </Key>
+          <Property Name="MaLoaiKetNoi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenLoaiKetNoi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="THIETBIs" Relationship="Self.FK_THIETBI_LoaiKetNoi" FromRole="LoaiKetNoi" ToRole="THIETBI" />
+        </EntityType>
+        <EntityType Name="LOAITHIETBI">
+          <Key>
+            <PropertyRef Name="MaLoaiTB" />
+          </Key>
+          <Property Name="MaLoaiTB" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenLoaiTB" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="GhiChu" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DanhMucThietBis" Relationship="Self.FK_DanhMucThietBi_LOAITHIETBI" FromRole="LOAITHIETBI" ToRole="DanhMucThietBi" />
+          <NavigationProperty Name="LOAITHIETBI_TRANGTHAI" Relationship="Self.FK_LOAITHIETBI_TRANGTHAI_LOAITHIETBI" FromRole="LOAITHIETBI" ToRole="LOAITHIETBI_TRANGTHAI" />
+          <NavigationProperty Name="THIETBIs" Relationship="Self.FK_THIETBI_LOAITHIETBI" FromRole="LOAITHIETBI" ToRole="THIETBI" />
+        </EntityType>
+        <EntityType Name="LOAITHIETBI_TRANGTHAI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="MaLoaiTB" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaTrangThai" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="LOAITHIETBI" Relationship="Self.FK_LOAITHIETBI_TRANGTHAI_LOAITHIETBI" FromRole="LOAITHIETBI_TRANGTHAI" ToRole="LOAITHIETBI" />
+          <NavigationProperty Name="TRANGTHAI" Relationship="Self.FK_LOAITHIETBI_TRANGTHAI_TRANGTHAI" FromRole="LOAITHIETBI_TRANGTHAI" ToRole="TRANGTHAI" />
+        </EntityType>
+        <EntityType Name="MAYTINH">
+          <Key>
+            <PropertyRef Name="MaMT" />
+          </Key>
+          <Property Name="MaMT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MSCum" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MAC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TenMT" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ProductID" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ThoiCapNhat" Type="DateTime" Precision="3" />
+          <Property Name="TrangThai" Type="Int32" />
+          <NavigationProperty Name="CUM" Relationship="Self.FK_MAYTINH_CUM" FromRole="MAYTINH" ToRole="CUM" />
+          <NavigationProperty Name="THIETBIs" Relationship="Self.FK_THIETBI_MAYTINH" FromRole="MAYTINH" ToRole="THIETBI" />
+        </EntityType>
+        <EntityType Name="THIETBI">
+          <Key>
+            <PropertyRef Name="MaTB" />
+          </Key>
+          <Property Name="MaTB" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenRutGon" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TenTB" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="MaLoaiTB" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MaMT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ProductID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MaLoaiKetNoi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="ViTri" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="MaHead" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Head" Relationship="Self.FK_THIETBI_Head" FromRole="THIETBI" ToRole="Head" />
+          <NavigationProperty Name="LoaiKetNoi" Relationship="Self.FK_THIETBI_LoaiKetNoi" FromRole="THIETBI" ToRole="LoaiKetNoi" />
+          <NavigationProperty Name="LOAITHIETBI" Relationship="Self.FK_THIETBI_LOAITHIETBI" FromRole="THIETBI" ToRole="LOAITHIETBI" />
+          <NavigationProperty Name="MAYTINH" Relationship="Self.FK_THIETBI_MAYTINH" FromRole="THIETBI" ToRole="MAYTINH" />
+          <NavigationProperty Name="TRANGTHAITBs" Relationship="Self.FK_TRANGTHAITB_THIETBI1" FromRole="THIETBI" ToRole="TRANGTHAITB" />
+        </EntityType>
+        <EntityType Name="TRAM">
+          <Key>
+            <PropertyRef Name="MSTram" />
+          </Key>
+          <Property Name="MSTram" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenTram" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CUMs" Relationship="Self.FK_CUM_TRAM" FromRole="TRAM" ToRole="CUM" />
+        </EntityType>
+        <EntityType Name="TRANGTHAI">
+          <Key>
+            <PropertyRef Name="MaTrangThai" />
+          </Key>
+          <Property Name="MaTrangThai" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NoiDung" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="TieuChuanMin" Type="Double" />
+          <Property Name="TieuChuanMax" Type="Double" />
+          <Property Name="MucDo" Type="Int32" />
+          <Property Name="MaMau" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DonVi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NoiDungCanhBao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LOAITHIETBI_TRANGTHAI" Relationship="Self.FK_LOAITHIETBI_TRANGTHAI_TRANGTHAI" FromRole="TRANGTHAI" ToRole="LOAITHIETBI_TRANGTHAI" />
+          <NavigationProperty Name="TRANGTHAITBs" Relationship="Self.FK_TRANGTHAITB_TRANGTHAI" FromRole="TRANGTHAI" ToRole="TRANGTHAITB" />
+        </EntityType>
+        <EntityType Name="TRANGTHAITB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaTB" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ThoiGian" Type="DateTime" Precision="3" />
+          <Property Name="MoTa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TrangThai" Type="Double" Nullable="false" />
+          <Property Name="MaTrangThai" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="THIETBI" Relationship="Self.FK_TRANGTHAITB_THIETBI1" FromRole="TRANGTHAITB" ToRole="THIETBI" />
+          <NavigationProperty Name="TRANGTHAI1" Relationship="Self.FK_TRANGTHAITB_TRANGTHAI" FromRole="TRANGTHAITB" ToRole="TRANGTHAI" />
+        </EntityType>
+        <Association Name="FK_CUM_TRAM">
+          <End Role="TRAM" Type="Self.TRAM" Multiplicity="0..1" />
+          <End Role="CUM" Type="Self.CUM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAM">
+              <PropertyRef Name="MSTram" />
+            </Principal>
+            <Dependent Role="CUM">
+              <PropertyRef Name="MSTram" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Head_CUM">
+          <End Role="CUM" Type="Self.CUM" Multiplicity="0..1" />
+          <End Role="Head" Type="Self.Head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUM">
+              <PropertyRef Name="MSCum" />
+            </Principal>
+            <Dependent Role="Head">
+              <PropertyRef Name="MSCUM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MAYTINH_CUM">
+          <End Role="CUM" Type="Self.CUM" Multiplicity="0..1" />
+          <End Role="MAYTINH" Type="Self.MAYTINH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUM">
+              <PropertyRef Name="MSCum" />
+            </Principal>
+            <Dependent Role="MAYTINH">
+              <PropertyRef Name="MSCum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DanhMucThietBi_LOAITHIETBI">
+          <End Role="LOAITHIETBI" Type="Self.LOAITHIETBI" Multiplicity="0..1" />
+          <End Role="DanhMucThietBi" Type="Self.DanhMucThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAITHIETBI">
+              <PropertyRef Name="MaLoaiTB" />
+            </Principal>
+            <Dependent Role="DanhMucThietBi">
+              <PropertyRef Name="MaLoaiTB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_THIETBI_Head">
+          <End Role="Head" Type="Self.Head" Multiplicity="0..1" />
+          <End Role="THIETBI" Type="Self.THIETBI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Head">
+              <PropertyRef Name="MaHead" />
+            </Principal>
+            <Dependent Role="THIETBI">
+              <PropertyRef Name="MaHead" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_THIETBI_LoaiKetNoi">
+          <End Role="LoaiKetNoi" Type="Self.LoaiKetNoi" Multiplicity="0..1" />
+          <End Role="THIETBI" Type="Self.THIETBI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiKetNoi">
+              <PropertyRef Name="MaLoaiKetNoi" />
+            </Principal>
+            <Dependent Role="THIETBI">
+              <PropertyRef Name="MaLoaiKetNoi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOAITHIETBI_TRANGTHAI_LOAITHIETBI">
+          <End Role="LOAITHIETBI" Type="Self.LOAITHIETBI" Multiplicity="1" />
+          <End Role="LOAITHIETBI_TRANGTHAI" Type="Self.LOAITHIETBI_TRANGTHAI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAITHIETBI">
+              <PropertyRef Name="MaLoaiTB" />
+            </Principal>
+            <Dependent Role="LOAITHIETBI_TRANGTHAI">
+              <PropertyRef Name="MaLoaiTB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_THIETBI_LOAITHIETBI">
+          <End Role="LOAITHIETBI" Type="Self.LOAITHIETBI" Multiplicity="0..1" />
+          <End Role="THIETBI" Type="Self.THIETBI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAITHIETBI">
+              <PropertyRef Name="MaLoaiTB" />
+            </Principal>
+            <Dependent Role="THIETBI">
+              <PropertyRef Name="MaLoaiTB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOAITHIETBI_TRANGTHAI_TRANGTHAI">
+          <End Role="TRANGTHAI" Type="Self.TRANGTHAI" Multiplicity="1" />
+          <End Role="LOAITHIETBI_TRANGTHAI" Type="Self.LOAITHIETBI_TRANGTHAI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRANGTHAI">
+              <PropertyRef Name="MaTrangThai" />
+            </Principal>
+            <Dependent Role="LOAITHIETBI_TRANGTHAI">
+              <PropertyRef Name="MaTrangThai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_THIETBI_MAYTINH">
+          <End Role="MAYTINH" Type="Self.MAYTINH" Multiplicity="0..1" />
+          <End Role="THIETBI" Type="Self.THIETBI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAYTINH">
+              <PropertyRef Name="MaMT" />
+            </Principal>
+            <Dependent Role="THIETBI">
+              <PropertyRef Name="MaMT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANGTHAITB_THIETBI1">
+          <End Role="THIETBI" Type="Self.THIETBI" Multiplicity="1" />
+          <End Role="TRANGTHAITB" Type="Self.TRANGTHAITB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THIETBI">
+              <PropertyRef Name="MaTB" />
+            </Principal>
+            <Dependent Role="TRANGTHAITB">
+              <PropertyRef Name="MaTB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANGTHAITB_TRANGTHAI">
+          <End Role="TRANGTHAI" Type="Self.TRANGTHAI" Multiplicity="1" />
+          <End Role="TRANGTHAITB" Type="Self.TRANGTHAITB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRANGTHAI">
+              <PropertyRef Name="MaTrangThai" />
+            </Principal>
+            <Dependent Role="TRANGTHAITB">
+              <PropertyRef Name="MaTrangThai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProcessMonitorEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CUMs" EntityType="Self.CUM" />
+          <EntitySet Name="DanhMucThietBis" EntityType="Self.DanhMucThietBi" />
+          <EntitySet Name="Heads" EntityType="Self.Head" />
+          <EntitySet Name="LICHSUs" EntityType="Self.LICHSU" />
+          <EntitySet Name="LoaiKetNois" EntityType="Self.LoaiKetNoi" />
+          <EntitySet Name="LOAITHIETBIs" EntityType="Self.LOAITHIETBI" />
+          <EntitySet Name="LOAITHIETBI_TRANGTHAI" EntityType="Self.LOAITHIETBI_TRANGTHAI" />
+          <EntitySet Name="MAYTINHs" EntityType="Self.MAYTINH" />
+          <EntitySet Name="THIETBIs" EntityType="Self.THIETBI" />
+          <EntitySet Name="TRAMs" EntityType="Self.TRAM" />
+          <EntitySet Name="TRANGTHAIs" EntityType="Self.TRANGTHAI" />
+          <EntitySet Name="TRANGTHAITBs" EntityType="Self.TRANGTHAITB" />
+          <AssociationSet Name="FK_CUM_TRAM" Association="Self.FK_CUM_TRAM">
+            <End Role="TRAM" EntitySet="TRAMs" />
+            <End Role="CUM" EntitySet="CUMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Head_CUM" Association="Self.FK_Head_CUM">
+            <End Role="CUM" EntitySet="CUMs" />
+            <End Role="Head" EntitySet="Heads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MAYTINH_CUM" Association="Self.FK_MAYTINH_CUM">
+            <End Role="CUM" EntitySet="CUMs" />
+            <End Role="MAYTINH" EntitySet="MAYTINHs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DanhMucThietBi_LOAITHIETBI" Association="Self.FK_DanhMucThietBi_LOAITHIETBI">
+            <End Role="LOAITHIETBI" EntitySet="LOAITHIETBIs" />
+            <End Role="DanhMucThietBi" EntitySet="DanhMucThietBis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_THIETBI_Head" Association="Self.FK_THIETBI_Head">
+            <End Role="Head" EntitySet="Heads" />
+            <End Role="THIETBI" EntitySet="THIETBIs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_THIETBI_LoaiKetNoi" Association="Self.FK_THIETBI_LoaiKetNoi">
+            <End Role="LoaiKetNoi" EntitySet="LoaiKetNois" />
+            <End Role="THIETBI" EntitySet="THIETBIs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOAITHIETBI_TRANGTHAI_LOAITHIETBI" Association="Self.FK_LOAITHIETBI_TRANGTHAI_LOAITHIETBI">
+            <End Role="LOAITHIETBI" EntitySet="LOAITHIETBIs" />
+            <End Role="LOAITHIETBI_TRANGTHAI" EntitySet="LOAITHIETBI_TRANGTHAI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_THIETBI_LOAITHIETBI" Association="Self.FK_THIETBI_LOAITHIETBI">
+            <End Role="LOAITHIETBI" EntitySet="LOAITHIETBIs" />
+            <End Role="THIETBI" EntitySet="THIETBIs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOAITHIETBI_TRANGTHAI_TRANGTHAI" Association="Self.FK_LOAITHIETBI_TRANGTHAI_TRANGTHAI">
+            <End Role="TRANGTHAI" EntitySet="TRANGTHAIs" />
+            <End Role="LOAITHIETBI_TRANGTHAI" EntitySet="LOAITHIETBI_TRANGTHAI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_THIETBI_MAYTINH" Association="Self.FK_THIETBI_MAYTINH">
+            <End Role="MAYTINH" EntitySet="MAYTINHs" />
+            <End Role="THIETBI" EntitySet="THIETBIs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANGTHAITB_THIETBI1" Association="Self.FK_TRANGTHAITB_THIETBI1">
+            <End Role="THIETBI" EntitySet="THIETBIs" />
+            <End Role="TRANGTHAITB" EntitySet="TRANGTHAITBs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANGTHAITB_TRANGTHAI" Association="Self.FK_TRANGTHAITB_TRANGTHAI">
+            <End Role="TRANGTHAI" EntitySet="TRANGTHAIs" />
+            <End Role="TRANGTHAITB" EntitySet="TRANGTHAITBs" />
+          </AssociationSet>
+          <FunctionImport Name="GetThongTinLichSuTrangThaiThietBi" ReturnType="Collection(ProcessMonitorModel.GetThongTinLichSuTrangThaiThietBi_Result)">
+            <Parameter Name="MaMT" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetThongTinTrangThaiChiTietCuaThietBi" ReturnType="Collection(ProcessMonitorModel.GetThongTinTrangThaiChiTietCuaThietBi_Result)">
+            <Parameter Name="MaTB" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetThongTinTrangThaiThietBi" ReturnType="Collection(ProcessMonitorModel.GetThongTinTrangThaiThietBi_Result)">
+            <Parameter Name="MSCum" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Search" ReturnType="Collection(ProcessMonitorModel.sp_Search_Result)">
+            <Parameter Name="Keyword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_SYNC_UpdateTRANGTHAITBTable">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="MATB" Mode="In" Type="String" />
+            <Parameter Name="THOIGIAN" Mode="In" Type="DateTime" />
+            <Parameter Name="MOTA" Mode="In" Type="String" />
+            <Parameter Name="TRANGTHAI" Mode="In" Type="Double" />
+            <Parameter Name="MATRANGTHAI" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetThongTinLichSuTrangThaiThietBi_Result">
+          <Property Type="DateTime" Name="ThoiGian" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="TrangThai" Nullable="true" />
+          <Property Type="String" Name="MaMT" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="MaHead" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="TenHead" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="uuTien" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MaTB" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TenTB" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ViTri" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="MaTrangThai" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="NoiDung" Nullable="true" MaxLength="150" />
+          <Property Type="Double" Name="TieuChuanMin" Nullable="true" />
+          <Property Type="Double" Name="TieuChuanMax" Nullable="true" />
+          <Property Type="Int32" Name="MucDo" Nullable="true" />
+          <Property Type="String" Name="MaMau" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="DonVi" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NoiDungCanhBao" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetThongTinTrangThaiChiTietCuaThietBi_Result">
+          <Property Type="String" Name="MaTrangThai" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="DonVi" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MaMau" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="MucDo" Nullable="true" />
+          <Property Type="String" Name="NoiDung" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="NoiDungCanhBao" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="TieuChuanMin" Nullable="true" />
+          <Property Type="Double" Name="TieuChuanMax" Nullable="true" />
+          <Property Type="Double" Name="TrangThai" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetThongTinTrangThaiThietBi_Result">
+          <Property Type="String" Name="MaMT" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="IP" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="MSCum" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="MAC" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TenMT" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ProductID" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="ThoiCapNhat" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="TrangThai" Nullable="true" />
+          <Property Type="String" Name="MaTB" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TenHead" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MaHead" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="TenTB" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="uuTien" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ViTri" Nullable="true" MaxLength="250" />
+          <Property Type="Double" Name="TrangThaiTB" Nullable="true" />
+          <Property Type="String" Name="MaTrangThai" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="NoiDung" Nullable="true" MaxLength="150" />
+          <Property Type="Double" Name="TieuChuanMin" Nullable="true" />
+          <Property Type="Double" Name="TieuChuanMax" Nullable="true" />
+          <Property Type="Int32" Name="MucDo" Nullable="true" />
+          <Property Type="String" Name="MaMau" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="DonVi" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NoiDungCanhBao" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_Search_Result">
+          <Property Type="String" Name="MaMT" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="IP" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="MSCum" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="MAC" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TenMT" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ProductID" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="ThoiCapNhat" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="TrangThai" Nullable="true" />
+          <Property Type="String" Name="MaTB" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="TenTB" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ViTri" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="NoiDung" Nullable="true" MaxLength="150" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProcessMonitorModelStoreContainer" CdmEntityContainer="ProcessMonitorEntities">
+          <EntitySetMapping Name="CUMs">
+            <EntityTypeMapping TypeName="ProcessMonitorModel.CUM">
+              <MappingFragment StoreEntitySet="CUM">
+                <ScalarProperty Name="MSCum" ColumnName="MSCum" />
+                <ScalarProperty Name="MSTram" ColumnName="MSTram" />
+                <ScalarProperty Name="TenCum" ColumnName="TenCum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DanhMucThietBis">
+            <EntityTypeMapping TypeName="ProcessMonitorModel.DanhMucThietBi">
+              <MappingFragment StoreEntitySet="DanhMucThietBi">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TenTB" ColumnName="TenTB" />
+                <ScalarProperty Name="Serial" ColumnName="Serial" />
+                <ScalarProperty Name="MaLoaiTB" ColumnName="MaLoaiTB" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Heads">
+            <EntityTypeMapping TypeName="ProcessMonitorModel.Head">
+              <MappingFragment StoreEntitySet="Head">
+                <ScalarProperty Name="MaHead" ColumnName="MaHead" />
+                <ScalarProperty Name="TenHead" ColumnName="TenHead" />
+                <ScalarProperty Name="MSCUM" ColumnName="MSCUM" />
+                <ScalarProperty Name="ViTri" ColumnName="ViTri" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LICHSUs">
+            <EntityTypeMapping TypeName="ProcessMonitorModel.LICHSU">
+              <MappingFragment StoreEntitySet="LICHSU">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MaTB" ColumnName="MaTB" />
+                <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="MaTrangThai" ColumnName="MaTrangThai" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoaiKetNois">
+            <EntityTypeMapping TypeName="ProcessMonitorModel.LoaiKetNoi">
+              <MappingFragment StoreEntitySet="LoaiKetNoi">
+                <ScalarProperty Name="MaLoaiKetNoi" ColumnName="MaLoaiKetNoi" />
+                <ScalarProperty Name="TenLoaiKetNoi" ColumnName="TenLoaiKetNoi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOAITHIETBIs">
+            <EntityTypeMapping TypeName="ProcessMonitorModel.LOAITHIETBI">
+              <MappingFragment StoreEntitySet="LOAITHIETBI">
+                <ScalarProperty Name="MaLoaiTB" ColumnName="MaLoaiTB" />
+                <ScalarProperty Name="TenLoaiTB" ColumnName="TenLoaiTB" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOAITHIETBI_TRANGTHAI">
+            <EntityTypeMapping TypeName="ProcessMonitorModel.LOAITHIETBI_TRANGTHAI">
+              <MappingFragment StoreEntitySet="LOAITHIETBI_TRANGTHAI">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MaLoaiTB" ColumnName="MaLoaiTB" />
+                <ScalarProperty Name="MaTrangThai" ColumnName="MaTrangThai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAYTINHs">
+            <EntityTypeMapping TypeName="ProcessMonitorModel.MAYTINH">
+              <MappingFragment StoreEntitySet="MAYTINH">
+                <ScalarProperty Name="MaMT" ColumnName="MaMT" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="MSCum" ColumnName="MSCum" />
+                <ScalarProperty Name="MAC" ColumnName="MAC" />
+                <ScalarProperty Name="TenMT" ColumnName="TenMT" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ThoiCapNhat" ColumnName="ThoiCapNhat" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THIETBIs">
+            <EntityTypeMapping TypeName="ProcessMonitorModel.THIETBI">
+              <MappingFragment StoreEntitySet="THIETBI">
+                <ScalarProperty Name="MaTB" ColumnName="MaTB" />
+                <ScalarProperty Name="TenRutGon" ColumnName="TenRutGon" />
+                <ScalarProperty Name="TenTB" ColumnName="TenTB" />
+                <ScalarProperty Name="MaLoaiTB" ColumnName="MaLoaiTB" />
+                <ScalarProperty Name="MaMT" ColumnName="MaMT" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="MaLoaiKetNoi" ColumnName="MaLoaiKetNoi" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="ViTri" ColumnName="ViTri" />
+                <ScalarProperty Name="MaHead" ColumnName="MaHead" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRAMs">
+            <EntityTypeMapping TypeName="ProcessMonitorModel.TRAM">
+              <MappingFragment StoreEntitySet="TRAM">
+                <ScalarProperty Name="MSTram" ColumnName="MSTram" />
+                <ScalarProperty Name="TenTram" ColumnName="TenTram" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRANGTHAIs">
+            <EntityTypeMapping TypeName="ProcessMonitorModel.TRANGTHAI">
+              <MappingFragment StoreEntitySet="TRANGTHAI">
+                <ScalarProperty Name="MaTrangThai" ColumnName="MaTrangThai" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="TieuChuanMin" ColumnName="TieuChuanMin" />
+                <ScalarProperty Name="TieuChuanMax" ColumnName="TieuChuanMax" />
+                <ScalarProperty Name="MucDo" ColumnName="MucDo" />
+                <ScalarProperty Name="MaMau" ColumnName="MaMau" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+                <ScalarProperty Name="NoiDungCanhBao" ColumnName="NoiDungCanhBao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRANGTHAITBs">
+            <EntityTypeMapping TypeName="ProcessMonitorModel.TRANGTHAITB">
+              <MappingFragment StoreEntitySet="TRANGTHAITB">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MaTB" ColumnName="MaTB" />
+                <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="MaTrangThai" ColumnName="MaTrangThai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetThongTinLichSuTrangThaiThietBi" FunctionName="ProcessMonitorModel.Store.GetThongTinLichSuTrangThaiThietBi">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProcessMonitorModel.GetThongTinLichSuTrangThaiThietBi_Result">
+                <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="MaMT" ColumnName="MaMT" />
+                <ScalarProperty Name="MaHead" ColumnName="MaHead" />
+                <ScalarProperty Name="TenHead" ColumnName="TenHead" />
+                <ScalarProperty Name="uuTien" ColumnName="uuTien" />
+                <ScalarProperty Name="MaTB" ColumnName="MaTB" />
+                <ScalarProperty Name="TenTB" ColumnName="TenTB" />
+                <ScalarProperty Name="ViTri" ColumnName="ViTri" />
+                <ScalarProperty Name="MaTrangThai" ColumnName="MaTrangThai" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="TieuChuanMin" ColumnName="TieuChuanMin" />
+                <ScalarProperty Name="TieuChuanMax" ColumnName="TieuChuanMax" />
+                <ScalarProperty Name="MucDo" ColumnName="MucDo" />
+                <ScalarProperty Name="MaMau" ColumnName="MaMau" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+                <ScalarProperty Name="NoiDungCanhBao" ColumnName="NoiDungCanhBao" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetThongTinTrangThaiChiTietCuaThietBi" FunctionName="ProcessMonitorModel.Store.GetThongTinTrangThaiChiTietCuaThietBi">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProcessMonitorModel.GetThongTinTrangThaiChiTietCuaThietBi_Result">
+                <ScalarProperty Name="MaTrangThai" ColumnName="MaTrangThai" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+                <ScalarProperty Name="MaMau" ColumnName="MaMau" />
+                <ScalarProperty Name="MucDo" ColumnName="MucDo" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="NoiDungCanhBao" ColumnName="NoiDungCanhBao" />
+                <ScalarProperty Name="TieuChuanMin" ColumnName="TieuChuanMin" />
+                <ScalarProperty Name="TieuChuanMax" ColumnName="TieuChuanMax" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetThongTinTrangThaiThietBi" FunctionName="ProcessMonitorModel.Store.GetThongTinTrangThaiThietBi">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProcessMonitorModel.GetThongTinTrangThaiThietBi_Result">
+                <ScalarProperty Name="MaMT" ColumnName="MaMT" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="MSCum" ColumnName="MSCum" />
+                <ScalarProperty Name="MAC" ColumnName="MAC" />
+                <ScalarProperty Name="TenMT" ColumnName="TenMT" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ThoiCapNhat" ColumnName="ThoiCapNhat" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="MaTB" ColumnName="MaTB" />
+                <ScalarProperty Name="TenHead" ColumnName="TenHead" />
+                <ScalarProperty Name="MaHead" ColumnName="MaHead" />
+                <ScalarProperty Name="TenTB" ColumnName="TenTB" />
+                <ScalarProperty Name="uuTien" ColumnName="uuTien" />
+                <ScalarProperty Name="ViTri" ColumnName="ViTri" />
+                <ScalarProperty Name="TrangThaiTB" ColumnName="TrangThaiTB" />
+                <ScalarProperty Name="MaTrangThai" ColumnName="MaTrangThai" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="TieuChuanMin" ColumnName="TieuChuanMin" />
+                <ScalarProperty Name="TieuChuanMax" ColumnName="TieuChuanMax" />
+                <ScalarProperty Name="MucDo" ColumnName="MucDo" />
+                <ScalarProperty Name="MaMau" ColumnName="MaMau" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+                <ScalarProperty Name="NoiDungCanhBao" ColumnName="NoiDungCanhBao" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Search" FunctionName="ProcessMonitorModel.Store.sp_Search">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProcessMonitorModel.sp_Search_Result">
+                <ScalarProperty Name="MaMT" ColumnName="MaMT" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="MSCum" ColumnName="MSCum" />
+                <ScalarProperty Name="MAC" ColumnName="MAC" />
+                <ScalarProperty Name="TenMT" ColumnName="TenMT" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ThoiCapNhat" ColumnName="ThoiCapNhat" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="MaTB" ColumnName="MaTB" />
+                <ScalarProperty Name="TenTB" ColumnName="TenTB" />
+                <ScalarProperty Name="ViTri" ColumnName="ViTri" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_SYNC_UpdateTRANGTHAITBTable" FunctionName="ProcessMonitorModel.Store.sp_SYNC_UpdateTRANGTHAITBTable" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

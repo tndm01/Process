@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9044fbc9a4904667a2bf96289d4af77c" Name="Diagram1">
+        <EntityTypeShape EntityType="ProcessMonitorModel.CUM" Width="1.5" PointX="1.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProcessMonitorModel.DanhMucThietBi" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProcessMonitorModel.Head" Width="1.5" PointX="3.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProcessMonitorModel.LICHSU" Width="1.5" PointX="5.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProcessMonitorModel.LoaiKetNoi" Width="1.5" PointX="3.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProcessMonitorModel.LOAITHIETBI" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProcessMonitorModel.LOAITHIETBI_TRANGTHAI" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProcessMonitorModel.MAYTINH" Width="1.5" PointX="3.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProcessMonitorModel.THIETBI" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProcessMonitorModel.TRAM" Width="1.5" PointX="1.5" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProcessMonitorModel.TRANGTHAI" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProcessMonitorModel.TRANGTHAITB" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="ProcessMonitorModel.FK_CUM_TRAM" ManuallyRouted="false" />
+        <AssociationConnector Association="ProcessMonitorModel.FK_Head_CUM" ManuallyRouted="false" />
+        <AssociationConnector Association="ProcessMonitorModel.FK_MAYTINH_CUM" ManuallyRouted="false" />
+        <AssociationConnector Association="ProcessMonitorModel.FK_DanhMucThietBi_LOAITHIETBI" ManuallyRouted="false" />
+        <AssociationConnector Association="ProcessMonitorModel.FK_THIETBI_Head" ManuallyRouted="false" />
+        <AssociationConnector Association="ProcessMonitorModel.FK_THIETBI_LoaiKetNoi" ManuallyRouted="false" />
+        <AssociationConnector Association="ProcessMonitorModel.FK_LOAITHIETBI_TRANGTHAI_LOAITHIETBI" ManuallyRouted="false" />
+        <AssociationConnector Association="ProcessMonitorModel.FK_THIETBI_LOAITHIETBI" ManuallyRouted="false" />
+        <AssociationConnector Association="ProcessMonitorModel.FK_LOAITHIETBI_TRANGTHAI_TRANGTHAI" ManuallyRouted="false" />
+        <AssociationConnector Association="ProcessMonitorModel.FK_THIETBI_MAYTINH" ManuallyRouted="false" />
+        <AssociationConnector Association="ProcessMonitorModel.FK_TRANGTHAITB_THIETBI1" ManuallyRouted="false" />
+        <AssociationConnector Association="ProcessMonitorModel.FK_TRANGTHAITB_TRANGTHAI" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

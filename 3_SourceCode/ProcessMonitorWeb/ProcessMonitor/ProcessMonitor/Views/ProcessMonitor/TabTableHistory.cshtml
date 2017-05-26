@@ -1,0 +1,107 @@
+﻿@model List<ProcessMonitor.Models.GetThongTinLichSuTrangThaiThietBi_Result>
+<table class="table table-bordered table-hover example">
+    <thead>
+        <tr class="myHead">            
+            <th>STT</th>
+            <th>Ngày cập nhật</th>
+            @{
+                var groupLTB = Model.GroupBy(u => new { u.MaHead, u.TenHead,u.uuTien }).Select(grp => new
+                {
+                    MaHead = grp.Key.MaHead,
+                    TenHead = grp.Key.TenHead,
+                    uuTien=grp.Key.uuTien,
+                    total = grp.Count()
+
+                }).OrderBy(t => t.uuTien).ToList();
+                
+                foreach (var ltb in groupLTB)
+                {
+                    <th>@ltb.TenHead</th>
+                }
+            }
+           
+            
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var group = Model.GroupBy(u => u.ThoiGian).Select(grp => new
+            {
+                ThoiGian = grp.Key,
+               
+                total = grp.Count()
+
+            }).ToList();
+            int stt = 0;
+            foreach (var i in group)
+                {
+                    stt++;
+                    var listTB = Model.Where(u => u.ThoiGian == i.ThoiGian).ToList();
+                     <tr>
+                    <td>@stt</td>
+                    <td>@i.ThoiGian</td>                 
+                    @{
+
+                    foreach (var ltb in groupLTB)
+                    {
+                       
+                        var thietbi = listTB.Where(u => u.MaHead == ltb.MaHead).FirstOrDefault();
+
+
+                        if (thietbi != null)
+                            {
+                                
+                                if (listTB[0].TrangThai == 0)
+                                {
+                                    <td><p>@thietbi.TenTB</p><span class="glyphicon glyphicon-remove"></span><p hidden>Lỗi</p>Mất kết nối</td>
+                                   
+                                }else
+                                {
+                                        switch (thietbi.MucDo)
+                                        {
+                                            case null:
+                                                {
+                                                    <td><span class="glyphicon glyphicon-remove"></span><p hidden>Lỗi</p>Chưa có thông tin trạng thái</td>
+                                                    break;
+                                                }
+                                            case 2:
+                                                {
+                                                    <td><p>@thietbi.TenTB</p><span class="glyphicon glyphicon-remove"></span><p hidden>Lỗi</p>@thietbi.NoiDungCanhBao</td>
+                                                    break;
+                                                }
+                                            case 1:
+                                                {
+                                                    <td><p>@thietbi.TenTB</p><span class="glyphicon glyphicon-bell"></span><p hidden>Cảnh báo</p>@thietbi.NoiDungCanhBao</td>
+                                                break;
+                                                }
+                                                default :
+                                                {
+                                                    <td>@thietbi.TenTB<span class="glyphicon glyphicon-ok"></span></td>
+                                                    break;
+                                                }
+
+                                        }
+                                }
+                            }
+                        else
+                        {
+                            <td><p hidden>Lỗi</p>----</td>
+                        }
+
+
+
+                    }
+
+
+}
+                     
+                                     
+                </tr>
+                    }
+                  
+               
+        }
+       
+      
+    </tbody>
+</table>

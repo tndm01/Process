@@ -1,0 +1,366 @@
+﻿@model List<ProcessMonitor.Models.CUM>
+@{
+    ViewBag.Title = "Trang Chủ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="row" style="background: rgba(9, 148, 232, 0.69); color: white;">
+        <div class="col-xs-1">
+            <img class="img-responsive" src="~/Content/img/logo.png" style="margin-left:15%;"/>
+        </div>
+        <div class="col-xs-10">
+            <center>
+                <h3>TRẠM LONG PHƯỚC</h3>
+            </center>
+        </div>
+        <div class="col-xs-1" >
+            <i class="glyphicon glyphicon-bell " style="font-size:214%; color:red;margin-top: 15%;margin-left: 33%;"></i>
+        </div>
+    </div>
+    <!-- Custom Tabs -->
+
+    <div class="col-xs-12">
+        <div class="box box-info" style="margin-top:10px;">
+            <div class="box-header with-border">
+                <div class="box-title">Tổng số cụm: @ViewBag.TongSoCum</div>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i style=" color: white; font-size: 130%; " class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="draggable-container">
+                    <ul class="nav nav-tabs draggable" role="tablist" style="border-bottom:1px solid rgba(0, 0, 0, 0);">
+                        @{
+                            int j = 0;
+                            foreach (var i in Model)
+                            {
+                                List<ProcessMonitor.Models.GetThongTinTrangThaiThietBi_Result> ListMay = ViewData[@i.MSCum] as List<ProcessMonitor.Models.GetThongTinTrangThaiThietBi_Result>;
+                                var tong = 0;
+                                var khongbinhthuong = 0;
+
+
+
+                                if (j == 0)
+                                {
+                                    if (ListMay.Count > 0)
+                                    {
+                                        tong = ListMay.GroupBy(u => u.MaMT).Select(grp => new
+                                        {
+                                            MaMT = grp.Key,
+
+
+                                        }).Count();
+
+                                        khongbinhthuong = ListMay.Where(u => u.MucDo == 2 || u.MucDo == null).GroupBy(u => u.MaMT).Select(grp => new
+                                        {
+                                            MaMT = grp.Key,
+                                            total = grp.Select(l => l.MaTB).Distinct().Count()
+
+                                        }).Count();
+                                    }
+                                    <li role="presentation" class="active">
+                                        <a href="#@(i.MSCum)_@j" data-toggle="tab" onclick="stopWarning()">
+                                            <div class="col-xs-12 title" align="center">@i.TenCum</div>
+                                            <table class="table table-bordered table-header">
+                                                <tr>
+                                                    <th>Toàn bộ</th>
+                                                    <th>Máy<br>bình thường</th>
+                                                    <th>Máy không<br>bình thường</th>
+                                                </tr>
+                                                <tr style="background:#b7b7b7;">
+                                                    <td class="black">@tong</td>
+                                                    @{
+                                    int tam = tong - khongbinhthuong;
+                                                    }
+                                                    <td class="blue">@tam</td>
+
+
+                                                    <td class="red">@khongbinhthuong</td>
+                                                </tr>
+
+                                            </table>
+                                        </a>
+
+                                    </li>
+                                }
+                                else
+                                {
+                                    if (ListMay.Count > 0)
+                                    {
+                                        tong = ListMay.GroupBy(u => u.MaMT).Select(grp => new
+                                        {
+                                            MaMT = grp.Key,
+
+
+                                        }).Count();
+
+                                        khongbinhthuong = ListMay.Where(u => u.MucDo == 2 || u.MucDo == null).GroupBy(u => u.MaMT).Select(grp => new
+                                        {
+                                            MaMT = grp.Key,
+                                            total = grp.Select(l => l.MaTB).Distinct().Count()
+
+                                        }).Count();
+                                    }
+                                    var x = i.MSCum;
+                                    <li role="presentation">
+                                        <a href="#@(i.MSCum)_@j" data-toggle="tab" onclick="stopWarning()">
+                                            <div class="col-xs-12 title" align="center">@i.TenCum</div>
+                                            <table class="table table-bordered table-header">
+                                                <tr>
+                                                    <th>Toàn bộ</th>
+                                                    <th>Máy<br>bình thường</th>
+                                                    <th>Máy không<br>bình thường</th>
+                                                </tr>
+                                                <tr style="background:#b7b7b7;">
+                                                    <td class="black">@tong</td>
+                                                    @{
+                                    int tam = tong - khongbinhthuong;
+                                                    }
+                                                    <td class="blue">@tam</td>
+
+
+                                                    <td class="red">@khongbinhthuong</td>
+                                                </tr>
+
+
+
+                                            </table>
+                                        </a>
+                                    </li>
+                                }
+                                j++;
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content">
+            @{
+                int k = 0;
+                foreach (var i in Model)
+                {
+                    List<ProcessMonitor.Models.GetThongTinTrangThaiThietBi_Result> ListMay = ViewData[@i.MSCum] as List<ProcessMonitor.Models.GetThongTinTrangThaiThietBi_Result>;
+
+                    if (k == 0)
+                    {
+                        <div class="tab-pane active" id="@(i.MSCum)_@k">
+                            <div class="box box-info">
+                                <div class="box-header with-border">
+                                    <div class="box-title">
+                                        Thông tin chi tiết về tình trạng kết nối
+                                    </div>
+                                    <div class="box-tools pull-right" style="font-size:150%; color:white;">
+                                        <i class="fa fa-clock-o"></i>
+                                        <span class="clock"></span>
+                                    </div>
+                                </div>
+
+
+                                <div class="box-body">
+                                    <div class="col-xs-6">
+                                        <div class="col-xs-2">
+                                            <select class="form-control" id="search_connect">
+                                                <option>Tất cả</option>
+                                                <option>Mở</option>
+                                                <option>Tắt</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <select class="form-control" id="search_error">
+                                                <option>Tất cả</option>
+                                                <option>Lỗi</option>
+                                                <option>Cảnh báo</option>
+                                                <option>Bình thường</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-4" style="padding: 0px; ">
+                                            <input type="text" class="form-control" placeholder="Tên máy tính" id="search_field">
+                                        </div>
+                                        <div class="col-xs-1" style="width: 11%; margin-left: 3%;">
+                                            <button type="button" class="btn btn-primary" onclick="btnSearch()">Tìm Kiếm</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="col-xs-4" style="padding-right: 0px;">
+                                            <span class="glyphicon glyphicon-ok"></span>
+                                            <label class="control-label">Bình thường</label>
+                                        </div>
+                                        <div class="col-xs-4" style="padding-right: 0px;">
+                                            <span class="glyphicon glyphicon-bell"></span>
+                                            <label class="control-label">Cảnh báo</label>
+                                        </div>
+                                        <div class="col-xs-4" style="padding-right: 0px;">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                            <label class="control-label">Lỗi</label>
+                                        </div>
+                                        @*<div class="col-xs-1" style="background: rgba(8, 214, 8, 0.71); border: 1px solid #D2D6DE; height: 25px; width:2%;"></div>
+                                            <div class="col-xs-1" style="padding-right: 0px; width:25%;">
+                                                <label class="control-label">Bình thường</label>
+                                            </div>
+                                            <div class="col-xs-1" style="background: rgba(255, 217, 18, 0.84); border: 1px solid #D2D6DE; height: 25px; width:2%;"></div>
+                                            <div class="col-xs-1" style="padding-right: 0px; width:25%;">
+                                                <label class="control-label">Cảnh báo</label>
+                                            </div>
+                                            <div class="col-xs-1" style="background: rgba(255, 2, 2, 0.78); border: 1px solid #D2D6DE; height: 25px; width:2%;"></div>
+                                            <div class="col-xs-1" style="padding-right: 0px; width:25%;">
+                                                <label class="control-label">Lỗi</label>
+                                            </div>*@
+                                    </div>
+                                    <div class="col-xs-1" style="width:10%;">
+                                        <select class="form-control" id="reload_time">
+                                            <option value="1">5 giây</option>
+                                            <option value="30">30 giây</option>
+                                            <option value="60">1 phút</option>
+                                            <option value="180">3 phút</option>
+                                            <option value="300">5 phút</option>
+                                            <option value="900">15 phút</option>
+                                            <option value="1800">30 phút</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <table class="table table-bordered table-hover myTable" id="table_@k">
+                                            <thead>
+                                                <tr class="myHead">
+                                                    <th>STT</th>
+                                                    <th>Tên máy</th>
+                                                    <th>Ngày cập nhật</th>
+                                                    <th>Trạng thái</th>
+                                                    @{
+
+                        ProcessMonitor.Controllers.TabTableController TabCT = new ProcessMonitor.Controllers.TabTableController();
+                        string html = TabCT.TableHeader(ListMay);
+                                                    }
+                                                    @Html.Raw(html)
+
+                                                </tr>
+
+
+
+                                            </thead>
+                                            <tbody id="theTable_@i.MSCum">
+                                                @Html.Partial("TabTable", ListMay)
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="tab-pane" id="@(i.MSCum)_@k">
+                            <div class="box box-info">
+                                <div class="box-header with-border">
+                                    <div class="box-title">
+                                        Thông tin chi tiết về tình trạng kết nối
+                                    </div>
+                                    <div class="box-tools pull-right" style="font-size:150%;  color:white;">
+                                        <i class="fa fa-clock-o"></i>
+                                        <span class="clock"></span>
+                                    </div>
+                                </div>
+
+                                <div class="box-body">
+                                    <div class="col-xs-6">
+                                        <div class="col-xs-2">
+                                            <select class="form-control" id="search_connect">
+                                                <option>ON</option>
+                                                <option>OFF</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <select class="form-control" id="search_error">
+                                                <option>Lỗi</option>
+                                                <option>Cảnh báo</option>
+                                                <option>Bình thường</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-4" style="padding: 0px; ">
+                                            <input type="text" class="form-control" placeholder="Tên máy tính" id="search_field">
+                                        </div>
+                                        <div class="col-xs-1" style="width: 11%; margin-left: 3%;">
+                                            <button type="button" class="btn btn-primary" onclick="btnSearch()">Tìm Kiếm</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="col-xs-4" style="padding-right: 0px;">
+                                            <span class="glyphicon glyphicon-ok"></span>
+                                            <label class="control-label">Bình thường</label>
+                                        </div>
+                                        <div class="col-xs-4" style="padding-right: 0px;">
+                                            <span class="glyphicon glyphicon-bell"></span>
+                                            <label class="control-label">Cảnh báo</label>
+                                        </div>
+                                        <div class="col-xs-4" style="padding-right: 0px;">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                            <label class="control-label">Lỗi</label>
+                                        </div>
+                                        @*<div class="col-xs-1" style="background: rgba(8, 214, 8, 0.71); border: 1px solid #D2D6DE; height: 25px; width:2%;"></div>
+                                            <div class="col-xs-1" style="padding-right: 0px; width:25%;">
+                                                <label class="control-label">Bình thường</label>
+                                            </div>
+                                            <div class="col-xs-1" style="background: rgba(255, 217, 18, 0.84); border: 1px solid #D2D6DE; height: 25px; width:2%;"></div>
+                                            <div class="col-xs-1" style="padding-right: 0px; width:25%;">
+                                                <label class="control-label">Cảnh báo</label>
+                                            </div>
+                                            <div class="col-xs-1" style="background: rgba(255, 2, 2, 0.78); border: 1px solid #D2D6DE; height: 25px; width:2%;"></div>
+                                            <div class="col-xs-1" style="padding-right: 0px; width:25%;">
+                                                <label class="control-label">Lỗi</label>
+                                            </div>*@
+                                    </div>
+                                    <div class="col-xs-1" style="width:10%;">
+                                        <select class="form-control" id="reload_time">
+                                            <option value="5">5 giây</option>
+                                            <option value="30">30 giây</option>
+                                            <option value="60">1 phút</option>
+                                            <option value="180">3 phút</option>
+                                            <option value="300">5 phút</option>
+                                            <option value="900">15 phút</option>
+                                            <option value="1800">30 phút</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <table class="table table-bordered table-hover myTable" id="table_@k">
+                                            <thead>
+                                                <tr class="myHead">
+                                                    <th>STT</th>
+                                                    <th>Tên máy</th>
+                                                    <th>Ngày cập nhật</th>
+                                                    <th>Trạng thái</th>
+                                                    @{
+
+                        ProcessMonitor.Controllers.TabTableController TabCT = new ProcessMonitor.Controllers.TabTableController();
+                        string html = TabCT.TableHeader(ListMay);
+                                                    }
+                                                    @Html.Raw(html)
+
+                                                </tr>
+
+
+
+                                            </thead>
+                                            <tbody id="theTable_@i.MSCum">
+                                                @Html.Partial("TabTable", ListMay)
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    k++;
+
+                }
+            <!-- /.tab-pane -->
+            }
+        </div>
+        <!-- /.tab-content -->
+
+    </div>
+
+</div>

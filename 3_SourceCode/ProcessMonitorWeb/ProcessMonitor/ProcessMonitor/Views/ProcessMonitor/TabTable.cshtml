@@ -1,0 +1,9 @@
+﻿@model List<ProcessMonitor.Models.GetThongTinTrangThaiThietBi_Result>
+
+   
+        @{
+            ProcessMonitor.Controllers.TabTableController TabCT = new ProcessMonitor.Controllers.TabTableController();
+            string htmlbody = TabCT.TableBody(Model);
+        }
+        @Html.Raw(htmlbody)
+    

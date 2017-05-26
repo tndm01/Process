@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="/Content/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/Content/plugins/datatables/dataTables.bootstrap.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/Content/dist/css/AdminLTE.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="/Content/plugins/iCheck/square/blue.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+    <![endif]-->
+    <link href="~/Content/plugins/scrolltabs/scrolltabs.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/Site.css">
+    <title>@ViewBag.Title - Monitor</title>
+</head>
+<body >
+    <div class="container-fluid">
+
+        @RenderBody()
+        
+    </div>
+    @*<footer>
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 1.0.0
+        </div>
+        Copyright © @DateTime.Now.Year <strong>ITD </strong> - All right reserved.
+    </footer>*@
+    <footer class="footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 1.0.0
+            </div>
+            Copyright © @DateTime.Now.Year <strong>ITD </strong> - All right reserved.
+    </footer>
+    <!-- nav-tabs-custom -->
+    <!-- jQuery 2.2.3 -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="/Content/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src="/Content/bootstrap/js/bootstrap.min.js"></script>
+    <!-- DataTables -->
+    <script src="/Content/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/Content/plugins/datatables/dataTables.bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="~/Content/plugins/scrolltabs/scrolltabs.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/dist/js/app.min.js"></script>
+    <script>
+        var interval;
+        $(function () {
+
+            $("#reload_time").change(function () {
+                clearInterval(interval);
+                AutoRefresh();
+            });
+            var countTabs = $(".draggable-container ul li").length;
+           
+            for (var i = 0; i < countTabs; i++)
+            {
+                var table = "#table_" + i;
+                $(table).DataTable({
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": false,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": true
+                });
+            }
+            
+            //runWarning();
+            AutoRefresh();
+           
+            startTime();
+        });
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            var d = today.getDate();
+            var M = today.getMonth() + 1;
+            var y = today.getFullYear();
+            m = checkTime(m);
+            s = checkTime(s);
+            //d = checkTime(d);
+            M = checkTime(M);
+            $(".clock").html( h + ":" + m + ":" + s + "  " + d + "/" + M + "/" + y);
+            var t = setTimeout(startTime, 500);
+        }
+        function getid(s)
+        {
+            alert(s);
+        }
+        function checkTime(i) {
+            if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+            return i;
+        }
+        function runWarning() {
+            var options = {};
+            // Run the effect
+            $(".bounce").effect("bounce", options, 1000, runWarning);
+        };
+        function stopWarning() {
+            $(".bounce").removeClass("bounce");
+        }
+        //$('#search_connect').on('change', function () {
+        //    var value = this.value;
+        //    var patt = new RegExp(value, "i");
+
+        //    $('#myTable').find('tr').each(function () {
+        //        if (!($(this).find('td').text().search(patt) >= 0)) {
+        //            $(this).not('.myHead').hide();
+        //        }
+        //        if (($(this).find('td').text().search(patt) >= 0)) {
+        //            $(this).show();
+        //        }
+        //    });
+
+        //});
+        function AutoRefresh() {
+            
+            var reloadTime = $('#reload_time option:selected').val();
+            
+            interval = setInterval(tabtable, reloadTime * 1000);
+        }
+        function tabtable()
+        {
+            var idtable = $(".tab-content div.active").attr('id');
+            var str = idtable.split("_", 2);
+            $.ajax(
+             $("#theTable_" + str[0]).load("/ProcessMonitor/TableReload", { 'id': str[0], 'number': str[1] })
+                ).success(function () {
+                });
+           }
+
+        function btnSearch() {
+           
+            var connectValue = $('#search_connect option:selected').text();
+            var patt = new RegExp(connectValue, "m");
+
+            var errorValue = $('#search_error option:selected').text();
+            var pattError = new RegExp(errorValue, "m");
+
+            var maytinhValue = $('#search_field').val();
+            var pattmaytinh = new RegExp(maytinhValue, "m");
+
+            $('.myTable').find('tr').each(function () {
+                if (connectValue != "") {
+                    if (!($(this).find('td').text().search(patt) >= 0) || !($(this).find('td').text().search(pattError) >= 0) || !($(this).find('td').text().search(pattmaytinh) >= 0)) {
+                        $(this).not('.myHead').hide();
+                    }
+
+                    if (($(this).find('td').text().search(patt) >= 0) && ($(this).find('td').text().search(pattError) >= 0) && ($(this).find('td').text().search(pattmaytinh) >= 0)) {
+                        $(this).show();
+                    }
+
+                }
+
+
+            });
+        }
+        //$('#search_field').on('keyup', function () {
+        //    var value = $(this).val();
+        //    var patt = new RegExp(value, "i");
+
+        //    $('#myTable').find('tr').each(function () {
+        //        if (!($(this).find('td').text().search(patt) >= 0)) {
+        //            $(this).not('.myHead').hide();
+        //        }
+        //        if (($(this).find('td').text().search(patt) >= 0)) {
+        //            $(this).show();
+        //        }
+        //    });
+
+        //});
+    </script>
+
+</body>
+
+</html>

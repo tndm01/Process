@@ -1,0 +1,70 @@
+﻿@model List<ProcessMonitor.Models.GetThongTinTrangThaiChiTietCuaThietBi_Result>
+
+<table class="table table-bordered table-hover example">
+    <thead>
+        <tr class="myHead"> 
+            <th>STT</th>   
+            <th>Tên trạng thái</th>
+            <th>Trạng thái</th>   
+            <th>Chi tiết</th>                                           
+        </tr>              
+    </thead>
+    <tbody>
+        @{
+            int stt = 0;
+            foreach (var i in Model)
+            {
+                stt++;
+                
+                string trangthai = "Bình thường";
+                string chitiet = "";
+                int mucdo = 0;
+                if (i.TrangThai < i.TieuChuanMin || i.TrangThai > i.TieuChuanMax)
+                {
+                    mucdo = (int)i.MucDo;
+                        
+                    trangthai = i.NoiDungCanhBao; 
+                    if(i.TieuChuanMin == 1)
+                    {
+                        chitiet = "Không " + i.DonVi;
+
+                    } 
+                    else
+                    {
+                        chitiet = i.TrangThai + " " + i.DonVi;
+                    }
+                }
+
+                
+               
+                <tr>
+                    <td>@stt</td>
+                    <td>@i.NoiDung</td>
+                    
+                    @{
+                        switch (mucdo)
+                        {
+                            case 2:
+                                {
+                                    <td><span class="glyphicon glyphicon-remove"></span>@trangthai</td>
+                                    break;
+                                }
+                            case 1:
+                                {
+                                    <td><span class="glyphicon glyphicon-bell"></span>@trangthai</td>
+                                    break;
+                                }
+                            default:
+                                {
+                                    <td><span class="glyphicon glyphicon-ok"></span>@trangthai</td>
+                                    break;
+                                }
+                        }
+                    }
+                    <td>@chitiet</td>             
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
